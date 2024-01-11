@@ -29,7 +29,7 @@ function NotificationsScreen({ navigation }: { navigation: any }) {
 const Drawer = createDrawerNavigator();
 
 // By default, the given "component" in the route config i.e. Drawer.Screen is scrollable and only contains the route
-// but it can be overridden (as below) to add header, footer or other component to the drawer
+// but it can be overridden (as below) to add header, footer or other component and additional UI using below
 function CustomDrawerContent(props: any) {
     // const progress = useDrawerProgress();
     // const translateX = Animated.interpolateNode(progress, {
@@ -58,6 +58,7 @@ const DrawerNavigator = () => {
             {/* Below is how to use custom drawer and screens should sit as it is i.e. <Drawer.Screen> */}
             {/* <Drawer.Navigator drawerContent={props => <CustomDrawerContent {...props} />}>Screens</Drawer.Navigator> */}
             <Drawer.Navigator initialRouteName="Home">
+                {/* By default, Drawer will be hidden , besides it will render below screens */}
                 <Drawer.Screen name="Home" component={HomeScreen} />
                 <Drawer.Screen name="Notifications" component={NotificationsScreen} />
             </Drawer.Navigator>
