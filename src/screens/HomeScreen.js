@@ -32,6 +32,7 @@ export default function HomeScreen({ navigation }) {
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
             <ScrollView style={{ padding: 20 }}>
+                {/* NAME AND ICON */}
                 <View
                     style={{
                         flexDirection: 'row',
@@ -49,6 +50,8 @@ export default function HomeScreen({ navigation }) {
                         />
                     </TouchableOpacity>
                 </View>
+
+                {/* SEARCH BAR */}
 
                 <View
                     style={{
