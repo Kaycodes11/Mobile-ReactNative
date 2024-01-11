@@ -3,7 +3,6 @@ import {
     SafeAreaView,
     View,
     Text,
-    TextInput,
     TouchableOpacity,
 } from 'react-native';
 
@@ -17,8 +16,13 @@ import TwitterSVG from '../assets/images/misc/twitter.svg';
 
 import CustomButton from '../components/CustomButton';
 import InputField from '../components/InputField';
+import { useAuth } from '../context/AuthContext';
 
 const LoginScreen = ({ navigation }) => {
+    const [email, setEmail] = React.useState("");
+    const [pass, setPass] = React.useState("");
+    const { login, logout } = useAuth();
+
     return (
         <SafeAreaView style={{ flex: 1, justifyContent: 'center' }}>
             <View style={{ paddingHorizontal: 25 }}>
@@ -41,6 +45,8 @@ const LoginScreen = ({ navigation }) => {
                     Login
                 </Text>
 
+                {/* <Text>{login()}</Text> */}
+
                 <InputField
                     label={'Email ID'}
                     icon={
@@ -52,6 +58,8 @@ const LoginScreen = ({ navigation }) => {
                         />
                     }
                     keyboardType="email-address"
+                    value={email}
+                    onChangeText={text => setEmail(text)}
                 />
 
                 <InputField
@@ -67,9 +75,11 @@ const LoginScreen = ({ navigation }) => {
                     inputType="password"
                     fieldButtonLabel={"Forgot?"}
                     fieldButtonFunction={() => { }}
+                    value={pass}
+                    onChangeText={text => setPass(text)}
                 />
 
-                <CustomButton label={"Login"} onPress={() => { }} />
+                <CustomButton label={"Login"} onPress={() => { login(email, pass) }} />
 
                 <Text style={{ textAlign: 'center', color: '#666', marginBottom: 30 }}>
                     Or, login with ...

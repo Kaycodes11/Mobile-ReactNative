@@ -17,9 +17,11 @@ import { windowWidth } from '../utils/Dimensions';
 import { freeGames, paidGames, sliderData } from '../model/data';
 import CustomSwitch from '../components/CustomSwitch';
 import ListItem from '../components/ListItem';
+import { useAuth } from '../context/AuthContext';
 
 export default function HomeScreen({ navigation }) {
     const [gamesTab, setGamesTab] = useState(1);
+    const { userInfo } = useAuth();
 
     const renderBanner = ({ item, index }) => {
         return <BannerSlider data={item} />;
@@ -40,7 +42,7 @@ export default function HomeScreen({ navigation }) {
                         marginBottom: 20,
                     }}>
                     <Text style={{ fontSize: 18, fontFamily: 'Roboto-Medium' }}>
-                        Hello John Doe
+                        Hello {userInfo?.displayName || "John Doe"}
                     </Text>
                     <TouchableOpacity onPress={() => navigation.openDrawer()}>
                         <ImageBackground
