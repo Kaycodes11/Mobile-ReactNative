@@ -1,0 +1,1 @@
+[READ]: https://reactnavigation.org/docs/material-bottom-tab-navigator/
