@@ -1,7 +1,8 @@
 import React from 'react';
 import { Button, View, Text, Linking } from "react-native";
 import { DrawerContentScrollView, DrawerItem, DrawerItemList, createDrawerNavigator, useDrawerProgress } from '@react-navigation/drawer';
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, useNavigationContainerRef } from '@react-navigation/native';
+import { useFlipper } from '@react-navigation/devtools';
 // import Animated from 'react-native-reanimated';
 
 
@@ -48,9 +49,12 @@ function CustomDrawerContent(props: any) {
 }
 
 const DrawerNavigator = () => {
+    const navigationRef = useNavigationContainerRef();
+    // For now, only applied NavigationRef on this Drawer Navigator so only when navigating on Drawer , Flipper will show correct React-Navigation for others it throws error since those are not enabled yet
+    useFlipper(navigationRef);
     return (
         // NavigationContainer's children should be a navigator so whether it's inline or from a component that return Navigator (either way it's fine)
-        <NavigationContainer>
+        <NavigationContainer ref={navigationRef}>
             {/* Below is how to use custom drawer and screens should sit as it is i.e. <Drawer.Screen> */}
             {/* <Drawer.Navigator drawerContent={props => <CustomDrawerContent {...props} />}>Screens</Drawer.Navigator> */}
             <Drawer.Navigator initialRouteName="Home">
